@@ -3,9 +3,9 @@ package com.axu.spring_boot_mybatis.service.impl;
 import com.axu.spring_boot_mybatis.entity.User;
 import com.axu.spring_boot_mybatis.mapper.UserDao;
 import com.axu.spring_boot_mybatis.service.UserService;
+import com.axu.spring_boot_mybatis.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.redis.core.RedisTemplate;
-//import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +16,23 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    private RedisUtils redisUtils;
+
     @Override
     public List<User> getUser() {
 
         List<User> usersList = userDao.getUser();
+        String key = "uesr4";
+        String value = "user4";
+
+        redisUtils.set(key,value);
+
+        System.out.println("test:1111111");
+//        redisTemplate.opsForValue().set("user_id:", "testredis");
 
         return userDao.getUser();
     }

@@ -4,6 +4,7 @@ import com.axu.spring_boot_mybatis.entity.User;
 import com.axu.spring_boot_mybatis.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,4 +36,12 @@ public class TestController {
 
         return usersList;
     }
+
+    @GetMapping(value = "/testRedis")
+    public Object testRedis(){
+
+        return "";
+    }
+
+
 }
