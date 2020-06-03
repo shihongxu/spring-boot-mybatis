@@ -26,14 +26,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getUser() {
 
         List<User> usersList = userDao.getUser();
-        String key = "uesr4";
-        String value = "user4";
+        String key = "user_id2";
+        String value = "usertest11";
 
         redisUtils.set(key,value);
 
-        System.out.println("test:1111111");
-//        redisTemplate.opsForValue().set("user_id:", "testredis");
+        redisTemplate.opsForValue().set("user_id3", "testredis");
 
-        return userDao.getUser();
+        Object keyValue = redisUtils.get("user_id2");
+        Object keyValue3 = redisUtils.get("user_id3");
+
+        System.out.println("keyvalue:" + keyValue + "===========keyValue3" + keyValue3);
+        return usersList;
     }
 }
