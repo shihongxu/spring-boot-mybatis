@@ -1,6 +1,8 @@
 package com.axu.spring_boot_mybatis.controller;
 
 import com.axu.spring_boot_mybatis.entity.User;
+import com.axu.spring_boot_mybatis.service.RedisTestService;
+import com.axu.spring_boot_mybatis.service.impl.RedisTestServiceImpl;
 import com.axu.spring_boot_mybatis.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class TestController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private RedisTestServiceImpl  redisTestService;
 
     /**
      * @Author Axu
@@ -40,7 +45,15 @@ public class TestController {
     @GetMapping(value = "/testRedis")
     public Object testRedis(){
 
-        return "";
+        //hash
+//        redisTestService.hashRedisType();
+
+        //list
+//        redisTestService.listRedisType();
+
+        redisTestService.setRedisType();
+
+        return "111";
     }
 
 
