@@ -4,6 +4,7 @@ import com.axu.spring_boot_mybatis.entity.User;
 import com.axu.spring_boot_mybatis.service.RedisTestService;
 import com.axu.spring_boot_mybatis.service.impl.RedisTestServiceImpl;
 import com.axu.spring_boot_mybatis.service.impl.UserServiceImpl;
+import com.axu.spring_boot_mybatis.service.impl.ZookeeperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ public class TestController {
     @Autowired
     private RedisTestServiceImpl  redisTestService;
 
+    @Autowired
+    private ZookeeperServiceImpl zookeeperService;
+
     /**
      * @Author Axu
      * @Description //TODO  * @Date 12:14 2020/5/20
@@ -42,6 +46,12 @@ public class TestController {
         return usersList;
     }
 
+    /**
+     * @Author Axu
+     * @Description //TODO 测试redis * @Date 16:16 2020/6/11
+     * @Param * @param
+     * @return java.lang.Object
+     **/
     @GetMapping(value = "/testRedis")
     public Object testRedis(){
 
@@ -57,4 +67,12 @@ public class TestController {
     }
 
 
+    @GetMapping("/testzookeeper")
+    public String testZookeeper(){
+        String result = "true";
+
+        zookeeperService.testZookeeper();
+
+        return result;
+    }
 }
